@@ -1,47 +1,45 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import ReservationForm from './components/ReservationForm.vue'
+import TableGrid from './components/TableGrid.vue'
+import ReservationList from './components/ReservationList.vue'
+import type { Reservation } from './types'
+
+const reservations = ref<Reservation[]>([])
+
+const addReservation = (reservation: Reservation) => {
+  reservations.value.push(reservation)
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="restaurant-app">
+    <h1>Restaurant Reservation System</h1>
+    <div class="content">
+      <ReservationForm @submit="addReservation" />
+      <TableGrid />
+      <ReservationList :reservations="reservations" />
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<style lang="scss">
+.restaurant-app {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
   }
 }
 </style>
