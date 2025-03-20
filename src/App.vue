@@ -1,26 +1,14 @@
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import ReservationForm from './components/ReservationForm.vue'
-import TableGrid from './components/TableGrid.vue'
-import ReservationList from './components/ReservationList.vue'
-import type { Reservation } from './types'
-
-const reservations = ref<Reservation[]>([])
-
-const addReservation = (reservation: Reservation) => {
-  reservations.value.push(reservation)
-}
 </script>
 
 <template>
   <div class="restaurant-app">
-    <h1>Restaurant Reservation System</h1>
-    <div class="content">
-      <ReservationForm @submit="addReservation" />
-      <TableGrid />
-      <ReservationList :reservations="reservations" />
-    </div>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/reservations">Current Reservations</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -30,16 +18,19 @@ const addReservation = (reservation: Reservation) => {
   max-width: 1200px;
   margin: 0 auto;
 
-  h1 {
-    color: #2c3e50;
-    text-align: center;
+  nav {
     margin-bottom: 2rem;
-  }
-
-  .content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    text-align: center;
+    
+    a {
+      color: #2c3e50;
+      text-decoration: none;
+      margin: 0 1rem;
+      
+      &.router-link-active {
+        color: #42b983;
+      }
+    }
   }
 }
 </style>
