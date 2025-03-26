@@ -1,9 +1,16 @@
-
 export interface Restaurant {
   id: string;
   name: string;
   address: string;
-  availableTimeSlots: TimeSlot[];
+  url: string;
+  phone: string,
+  cuisine: string;
+  availableTimings?: Array<{
+    type: string,
+    open: string,
+    close: string,
+    slots: Array<string>,
+  }>
 }
 
 export interface TimeSlot {
