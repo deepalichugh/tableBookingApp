@@ -10,3 +10,13 @@ export async function addNewRestaurant(
     });
     return response.data;
 }
+
+export async function getAllRestaurants() {
+    const response = await axios.get(`/api/`);
+    return response.data;
+}
+
+export async function deleteRestaurant(id: string) {
+    const response = await axios.delete(`/api/${id}`);
+    return response.data;
+}

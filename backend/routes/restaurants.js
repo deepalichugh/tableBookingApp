@@ -1,24 +1,24 @@
 
 const express = require('express')
-const { createRestaurant } = require('../controller/restaurantController')
+const { createRestaurant, getAllRestaurants, deleteRestaurantById } = require('../controller/restaurantController')
 
 const router = express.Router()
 
 
-// GET all tasks
-// router.get('/', getAllTasks)
+// GET all restaurant
+router.get('/', getAllRestaurants)
 
-//GET a single task
-// router.get('/:id', getTaskById)
+//GET a single restaurant
+// router.get('/:id', getRestaurantById)
 
-//POST a new task
+//POST a new restaurant
 router.post('/', createRestaurant)
 
-//Delete a task
-// router.delete('/:id', deleteTaskById)
+//Delete a restaurant
+router.delete('/:id', deleteRestaurantById)
 
-//Update a task
-// router.patch('/:id', updateTaskById)
+//Update a restaurant
+// router.patch('/:id', updateRestaurantById)
 
 //exporting the routes
 module.exports = router
